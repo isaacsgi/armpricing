@@ -21,11 +21,18 @@ router.post('/', function (req, res){
 
 router.post('/parse', function(req, res){
 	// parse the pricing (will make this dynamic and not suck in the future)
-	var pricing_json = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/Virtual-Machines.js'), 'utf-8'));
-	debugger; 
+	//var pricing_json = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/Virtual-Machines.js'), 'utf-8'));
+	//var core = pricing_json.offers['basic-a0']['prices'];
+	//console.log(core['us-east-windows']);
 	
-	var core = pricing_json.offers['basic-a0']['prices'];
-	console.log(core['us-east-windows']);
+	var pricing_json = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/test.js'), 'utf-8'));
+	console.log(pricing_json);
+	//var test = test_json.resources;
+	//test.forEach(function(item){
+	//	console.log(item);
+	//});
+	
+	//console.log(test);
 	
 	res.render('index', { title: 'test' });
 });
