@@ -3,6 +3,7 @@ var router = express.Router();
 var multer = require('multer');
 var path = require('path');
 var fs = require('fs');
+var util = require('util');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -25,14 +26,16 @@ router.post('/parse', function(req, res){
 	//var core = pricing_json.offers['basic-a0']['prices'];
 	//console.log(core['us-east-windows']);
 	
-	var pricing_json = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/test.js'), 'utf-8'));
-	console.log(pricing_json);
-	//var test = test_json.resources;
-	//test.forEach(function(item){
-	//	console.log(item);
-	//});
-	
-	//console.log(test);
+	var test_json = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/test.js'), 'utf-8'));
+	//console.log(test_json);
+	var test = test_json['resources'];
+	test.forEach(function(item){
+		if (item['type'] == 'Microsoft.Compute/virtualMachines') {
+			console.log(item['properties']['hardwareProfile']['vmSize']);
+		}
+		
+		console.log('0---------------------------------0');
+	});
 	
 	res.render('index', { title: 'test' });
 });
