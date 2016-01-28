@@ -1,5 +1,7 @@
 extends layout
 
-block content
-  h1= title
-  p Welcome to #{title}
+block append content
+	div.jumbotron 
+		div.container
+			h1 ARM Pricing Calculator
+			p This is a site to read your ARM template and calculate the price for you automatically.
