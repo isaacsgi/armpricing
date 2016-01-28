@@ -10,7 +10,9 @@ block append content
 			h2 Upload your ARM template file
 			p Here you can provide you arm template that will be parsed
 			p
-				a.btn.btn-default(href='#',role='button') Upload 
+				form(role='form',action='/upload',method='post',enctype='multipart/form-data')
+					div.form-group
+						input(type='file',name='azurefile',id='azurefile')
 		div.col-md-6(style='background-color:#eee;margin-left:30px;')
 			h2 View results
 			p The results from the calculation
