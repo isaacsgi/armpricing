@@ -17,10 +17,7 @@ block append content
 		div.col-md-4(style='background-color:#eee;border-left: 30px solid white;')
 			h2 View results
 			p The results from the calculation
-			form(role='form',action='/parse',method='post')
-				div.form-group
-					input(type='submit',name='parse',value='Calculate')
-			div.row
+			div.row(style='padding-left:10px;padding-right:10px;')
 				if (typeof prices === 'undefined')
 				else
 					table.table.table-striped.table-bordered

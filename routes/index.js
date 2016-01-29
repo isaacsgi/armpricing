@@ -11,11 +11,29 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/',[ multer({ dest: './uploads/'}), function(req, res){
-	//console.log(req.body);
-	//console.log(req.files);
 	var file = req.files.azurefile;
-	console.log(file);
-	console.log(file.path);
+	
+	// parse the pricing (will make this dynamic and not suck in the future)
+	var pricing_json = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/Virtual-Machines.js'), 'utf-8'));
+	var input_json = JSON.parse(fs.readFileSync(path.join(__dirname, '../', file.path), 'utf-8'));
+
+	var input = input_json['resources'];
+	input.forEach(function(item){
+		if (item['type'] == 'Microsoft.Compute/virtualMachines') {
+			var coreItem = item['properties']['hardwareProfile']['vmSize'].toLowerCase();
+			var coreItem2 = coreItem.replace('_','-');
+			var location = item['location'];
+			console.log(location);
+			var final_price = pricing_json.offers[coreItem2]['prices']['us-west-windows'];
+			
+			var testobj = { "prices": { "vmSize": coreItem2, "vmLocation": location, "vmPrice": final_price }};
+			
+			var output = { title: 'Arm Pricing', prices: testobj };
+			console.log(output);
+			res.render('index', output);
+		}
+	});
+
 	res.status(204).end();
 }]);
 
