@@ -1,0 +1,10 @@
+[
+  {
+    "Azure CPU": "9PP-00005",
+    "Azure offer name": "standard-d1- US-West",
+    "Azure per hour price": 0.14,
+    "AWS CPU": "E8VRN6DRV3S7PT6G",
+    "AWS offer name": "AmazonEC2-US West (Oregon)",
+    "AWS price per hour": 0.11
+  }
+] 
