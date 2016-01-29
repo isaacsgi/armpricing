@@ -12,9 +12,8 @@ block append content
 					td VM Size
 					td Location
 					td Price
-				tr
-					td Standard_D1
-					td West US
-					td $0.17/hr
-			each price in prices
-				h4 #{price.vmSize} #{price.vmLocation} #{price.vmPrice}
+				each price in prices
+					tr
+						td #{price.vmSize}
+						td #{price.vmLocation}
+						td #{price.vmPrice}

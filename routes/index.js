@@ -34,7 +34,9 @@ router.post('/parse', function(req, res){
 			console.log(location);
 			var final_price = pricing_json.offers[coreItem2]['prices']['us-west-windows'];
 			
-			var output = { title: 'Test', prices: { "vmSize": coreItem2, "vmLocation": location, "vmPrice": final_price }};
+			var testobj = { "prices": { "vmSize": coreItem2, "vmLocation": location, "vmPrice": final_price }};
+			
+			var output = { title: 'Test', prices: testobj };
 			console.log(output);
 			res.render('results', output);
 		}
