@@ -22,22 +22,23 @@ router.post('/', function (req, res){
 
 router.post('/parse', function(req, res){
 	// parse the pricing (will make this dynamic and not suck in the future)
-	//var pricing_json = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/Virtual-Machines.js'), 'utf-8'));
-	//var core = pricing_json.offers['basic-a0']['prices'];
-	//console.log(core['us-east-windows']);
-	
-	var test_json = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/test.js'), 'utf-8'));
-	//console.log(test_json);
-	var test = test_json['resources'];
-	test.forEach(function(item){
+	var pricing_json = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/Virtual-Machines.js'), 'utf-8'));
+	var input_json = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/data/test.js'), 'utf-8'));
+
+	var input = input_json['resources'];
+	input.forEach(function(item){
 		if (item['type'] == 'Microsoft.Compute/virtualMachines') {
-			console.log(item['properties']['hardwareProfile']['vmSize']);
+			var coreItem = item['properties']['hardwareProfile']['vmSize'].toLowerCase();
+			var coreItem2 = coreItem.replace('_','-');
+			var location = item['location'];
+			console.log(location);
+			var final_price = pricing_json.offers[coreItem2]['prices']['us-west-windows'];
+			
+			var output = { title: 'Test', prices: { "vmSize": coreItem2, "vmLocation": location, "vmPrice": final_price }};
+			console.log(output);
+			res.render('results', output);
 		}
-		
-		console.log('0---------------------------------0');
 	});
-	
-	res.render('index', { title: 'test' });
 });
 
 module.exports = router;

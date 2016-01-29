@@ -1,0 +1,20 @@
+extends layout
+
+block append content
+	div.container
+		h1 Results
+	div.container
+		if (typeof prices === 'undefined')
+			h1 ERROR
+		else
+			table.table.table-striped.table-bordered
+				tr
+					td VM Size
+					td Location
+					td Price
+				tr
+					td Standard_D1
+					td West US
+					td $0.17/hr
+			each price in prices
+				h4 #{price.vmSize} #{price.vmLocation} #{price.vmPrice}
