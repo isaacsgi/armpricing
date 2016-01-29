@@ -5,19 +5,31 @@ block append content
 		div.container
 			h1 ARM Pricing Calculator
 			p This is a site to read your ARM template and calculate the price for you automatically.
-	div.row(style='padding-left:15px;')
+	div.row.container-fluid
 		div.col-md-4(style='background-color:#eee;')
 			h2 Upload your ARM template file
 			p Here you can provide you arm template that will be parsed
 			p
 				form(role='form',action='/',method='post',enctype='multipart/form-data')
 					div.form-group
-						input(type='file',name='azurefile',id='azurefile',style='float:left;')
-						input(type='submit',name='upload',value='Upload',style='float:left;margin-left:10px;')
-		div.col-md-6(style='background-color:#eee;margin-left:30px;')
+						input(type='file',name='azurefile',id='azurefile')
+						input(type='submit',name='upload',value='Upload')
+		div.col-md-4(style='background-color:#eee;border-left: 30px solid white;')
 			h2 View results
 			p The results from the calculation
 			form(role='form',action='/parse',method='post')
 				div.form-group
 					input(type='submit',name='parse',value='Calculate')
-					
+			div.row
+				if (typeof prices === 'undefined')
+				else
+					table.table.table-striped.table-bordered
+						tr
+							td Asset
+							td Location
+							td Price
+						each price in prices
+							tr
+								td #{price.vmSize}
+								td #{price.vmLocation}
+								td #{price.vmPrice}

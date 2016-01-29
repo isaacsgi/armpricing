@@ -38,7 +38,7 @@ router.post('/parse', function(req, res){
 			
 			var output = { title: 'Test', prices: testobj };
 			console.log(output);
-			res.render('results', output);
+			res.render('index', output);
 		}
 	});
 });
