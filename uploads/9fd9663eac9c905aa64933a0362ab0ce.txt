@@ -1,0 +1,5 @@
+Service Principal ID:
+TenantID: 72f988bf-86f1-41af-91ab-2d7cd011db47
+ObjectID: d45624c1-337f-4608-a092-1b0ad688cd8c
+Password: H@ppyT1m3$
+Subscription: b698b458-79d8-4ba5-afda-622ca2c68735

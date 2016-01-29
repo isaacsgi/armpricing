@@ -11,8 +11,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/',[ multer({ dest: './uploads/'}), function(req, res){
-	console.log(req.body);
-	console.log(req.files);
+	//console.log(req.body);
+	//console.log(req.files);
+	var file = req.files.azurefile;
+	console.log(file);
+	console.log(file.path);
 	res.status(204).end();
 }]);
 
@@ -36,7 +39,7 @@ router.post('/parse', function(req, res){
 			
 			var testobj = { "prices": { "vmSize": coreItem2, "vmLocation": location, "vmPrice": final_price }};
 			
-			var output = { title: 'Test', prices: testobj };
+			var output = { title: 'Arm Pricing', prices: testobj };
 			console.log(output);
 			res.render('index', output);
 		}
