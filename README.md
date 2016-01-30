@@ -18,3 +18,7 @@ npm install
 npm start
 open browser to http://localhost:3000
 ```
+
+## Futures
+
+There is still alot of work to do here.  You can request to join the [public Trello board](https://trello.com/b/frturJAe/azure-arm-pricing-calculator) for managing/tracking features.
